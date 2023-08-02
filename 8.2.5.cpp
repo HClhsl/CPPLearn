@@ -45,11 +45,21 @@ LNode split_list(LNode x){
         l = l->next;
         x=l;
     }
+    l = l->next;
     x->next= nullptr;
     return l;
 }
 
 void list_inverse(LNode x){
+    LNode t1,t2,t3,temp;
+    t1=x->next;
+    for(;x!= nullptr;){
+        t1=x->next;
+        t2=t1->next;
+        t3=t2->next;
+        x->next->next=t1;
+        x=x->next;
+    }
 
 }
 
@@ -65,7 +75,8 @@ int main(){
     }
     list_print(p);
     LNode q;
-    q=split_list(p);
+    q=(LNode) malloc(sizeof (NODE));
+    q->next=split_list(p);
     list_print(p);
     list_print(q);
 }
