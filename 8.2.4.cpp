@@ -77,6 +77,43 @@ int search_by_data(linkList x,ElementType data){
     }
 }
 
+linkList GetEle(linkList x,int locate){
+    while(x!= nullptr){
+        if(locate!=0){
+            x=x->next;
+            locate--;
+        }
+        else{
+            return x;
+        }
+    }
+    printf("Locate Error\n");
+    return nullptr;
+}
+
+void insert_in_locate(linkList x,int locate,ElementType a){
+    linkList l= GetEle(x,locate-1);
+    if(l==nullptr){
+        printf("Location Error\n");
+        return;
+    }
+    linkList t=(linkList) malloc(sizeof (LNode));
+    t->next=l->next;
+    l->next=t;
+    t->data=a;
+}
+
+void del_list_location(linkList x,int locate){
+    linkList l= GetEle(x,locate-1);
+    if(l== nullptr){
+        printf("Location ERROR");
+        return;
+    }
+    linkList m=l->next;
+    l->next=m->next;
+    free(m);
+}
+
 int main(){
     linkList p;
     list_init(p,1);
@@ -88,8 +125,8 @@ int main(){
         head_insert(p,x[i]);
     }
     print_list(p);
-    int ret=search_by_data(p,13);
-    printf("13 located at %d of the LNode\n",ret);
-    ElementType t= search_by_location(p,5);
-    printf("The 5  of the LNode is %d\n",t);
+    insert_in_locate(p,7,77);
+    print_list(p);
+    del_list_location(p,7);
+    print_list(p);
 }
