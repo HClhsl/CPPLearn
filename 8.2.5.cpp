@@ -1,6 +1,18 @@
 //
 // Created by 28580 on 2023/8/2.
 //
+/*设线性表L=a1 a2 a3... 采用带头结点的单链表保存，链表中
+的结点定义如下：
+typedef struct node {
+int data;
+struct node* next;
+} NODE；
+请设计一个空间复杂度为O(1)且时间上尽可能高效的算法，重新排列L 中的各结点，
+得到线性表L'=a1 an a2 an-1...。要求：
+（1）给出算法的基本设计思想。
+（2）根据设计思想，采用C 或C++语言描述算法，关键之处给出注释。
+（3）说明你所设计的算法的时间复杂度。*/
+
 #include <cstdlib>
 #include <cstdio>
 
@@ -50,16 +62,46 @@ LNode split_list(LNode x){
     return l;
 }
 
-void list_inverse(LNode x){
-    LNode t1,t2,t3,temp;
-    t1=x->next;
-    for(;x!= nullptr;){
-        t1=x->next;
-        t2=t1->next;
-        t3=t2->next;
-        x->next->next=t1;
-        x=x->next;
+void list_inverse(LNode &x){
+    LNode head,beg,end;
+    head=x;
+    beg=x->next;
+    end=beg->next;
+    for(;beg->next!= nullptr;){
+        beg->next=end->next;
+        end->next=head->next;
+        head->next=end;
+        end=beg->next;
     }
+}
+
+LNode GetEle(LNode x,int locate){
+    while(x!= nullptr){
+        if(locate!=0){
+            x=x->next;
+            locate--;
+        }
+        else{
+            return x;
+        }
+    }
+    printf("Locate Error\n");
+    return nullptr;
+}
+
+void list_plus(LNode x,LNode p){
+    LNode temp,temp2;
+    temp2=p;
+    LNode A,B;
+    for(int n=1; p->next!= nullptr;n++){
+        A=GetEle(x,2*n-1);
+        B=GetEle(p,1);
+        p->next=B->next;
+        B->next=A->next;
+        A->next=B;
+
+    }
+    A->next->next= nullptr;
 
 }
 
@@ -73,10 +115,14 @@ int main(){
         x[i]=x[i-1]+x[i-2];
         head_insert(p,x[i]);
     }
-    list_print(p);
+    //list_print(p);
     LNode q;
     q=(LNode) malloc(sizeof (NODE));
     q->next=split_list(p);
     list_print(p);
     list_print(q);
+    list_inverse(q);
+    list_print(q);
+    list_plus(p,q);
+    list_print(p);
 }
