@@ -4,5 +4,6 @@ project(untitled)
 set(CMAKE_CXX_STANDARD 17)
 
 add_executable(CPPCODE
-        8.5.1.cpp
+        binary_tree_chain.h
+        8.5.2.cpp
 )
