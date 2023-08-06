@@ -44,6 +44,10 @@ void queue_delete(aq &x){
     free(temp);
 }
 
+bool queue_is_empty(aq x){
+    return x.rear==x.front;
+}
+
 void bt_insert(btn &x,aq &y,element_type a){
     if(y.front->data->left_child== nullptr){
         y.front->data->left_child=(p_btn) malloc(sizeof (btn));
@@ -78,6 +82,60 @@ void bt_init(btn &x,aq &y,element_type a){
     x.left_child= nullptr;
     x.right_child= nullptr;
     x.data=a;
+}
+
+void bt_pre_order_for_WPL(p_btn x,int length,int &sum){
+    if(x->left_child== nullptr&&x->right_child== nullptr) {
+        sum+=length*x->data;
+    }
+    if(x->left_child!= nullptr){
+        bt_pre_order_for_WPL(x->left_child, length + 1, sum);
+    }
+    if(x->right_child!= nullptr){
+        bt_pre_order_for_WPL(x->right_child,length+1,sum);
+    }
+}
+
+void bt_pre_order(p_btn x){
+    if(x!= nullptr) {
+        putchar(x->data);
+        bt_pre_order(x->left_child);
+        bt_pre_order(x->right_child);
+    }
+}
+
+void bt_in_order(p_btn x){
+    if(x!= nullptr){
+        bt_in_order(x->left_child);
+        putchar(x->data);
+        bt_in_order(x->right_child);
+    }
+}
+
+void bt_post_order(p_btn x){
+    if(x!= nullptr){
+        bt_post_order(x->left_child);
+        bt_post_order(x->right_child);
+        putchar(x->data);
+    }
+}
+
+void bt_level_order(p_btn x){
+    aq q1;
+    queue_init(q1);
+
+    queue_insert(q1,x);
+    for(; !queue_is_empty(q1);){
+        x=q1.front->data;
+        printf("%c",q1.front->data->data);
+        queue_delete(q1);
+        if(x->left_child!= nullptr) {
+            queue_insert(q1,x->left_child);
+        }
+        if(x->right_child!= nullptr){
+            queue_insert(q1,x->right_child);
+        }
+    }
 }
 
 #endif //UNTITLED_BINARY_TREE_CHAIN_H

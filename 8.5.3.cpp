@@ -7,7 +7,9 @@ int main(){
     btn t1;
     aq q1;
     bt_init(t1,q1,97);
-    char t=98;
+    int sum=0;
+    int length=1;
+    int t=98;
     for(int i=0;i<10;i++){
         bt_insert(t1,q1,t);
         t++;
@@ -19,5 +21,7 @@ int main(){
     bt_post_order(&t1);
     printf("\n");
     bt_level_order(&t1);
-
+    printf("\n");
+    bt_pre_order_for_WPL(&t1,length,sum);
+    printf("%d",sum);
 }

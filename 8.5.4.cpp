@@ -6,11 +6,9 @@
 int main(){
     btn t1;
     aq q1;
-    bt_init(t1,q1,97);
-    char t=98;
-    for(int i=0;i<10;i++){
-        bt_insert(t1,q1,t);
-        t++;
+    bt_init(t1,q1,'a');
+    for(char i=98;i<=106;i++){
+        bt_insert(t1,q1,i);
     }
     bt_pre_order(&t1);
     printf("\n");
@@ -19,5 +17,4 @@ int main(){
     bt_post_order(&t1);
     printf("\n");
     bt_level_order(&t1);
-
 }
