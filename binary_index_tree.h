@@ -43,7 +43,7 @@ void bit_insert(bit &x,element_type a){
     }
 }
 
-void bit_init(bit &x,int num){
+void bit_init_random(bit &x,int num){
     srand(time(nullptr));
     x.data=number_generate();
     x.left_child= nullptr;
@@ -53,11 +53,26 @@ void bit_init(bit &x,int num){
     }
 }
 
-void bit_in_order(p_bit x){
+void bit_init_input(bit &x,int num){
+    element_type data;
+    scanf("%d",&data);
+    x.left_child= nullptr;
+    x.right_child= nullptr;
+    x.data=data;
+    for(int i=1;i<10;i++){
+        scanf("%d",&data);
+        bit_insert(x,data);
+    }
+}
+
+
+void bit_in_order(p_bit x,element_type* d,int &aup){
     if(x!= nullptr){
-        bit_in_order(x->left_child);
+        bit_in_order(x->left_child,d,aup);
         printf("%d ",x->data);
-        bit_in_order(x->right_child);
+        d[aup]=x->data;
+        aup++;
+        bit_in_order(x->right_child,d,aup);
     }
 }
 
