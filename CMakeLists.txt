@@ -4,5 +4,6 @@ project(untitled)
 set(CMAKE_CXX_STANDARD 17)
 
 add_executable(CPPCODE
-        8.9.2.cpp
+        WD/SqList.h
+        WD/17.2.6.cpp
 )

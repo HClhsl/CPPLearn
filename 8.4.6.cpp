@@ -7,7 +7,7 @@
 
 using namespace std;
 
-#define MaxSize 50
+#define MaxSize 200
 
 typedef int element_type;
 

@@ -87,5 +87,4 @@ int main(){
     STable_quick_sort(t1.data,0,29);
     STable_print(&t1);
     printf("\n");
-
 }
