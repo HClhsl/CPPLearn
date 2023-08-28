@@ -69,4 +69,15 @@ bool list_del(SqList_static &s,int locate,elem_type &data){
     return true;
 }
 
+void list_del_repeat(SqList_static &s){
+    elem_type data;
+    for(int i=1;i<s.length;i++){
+        for(int t=i+1;t<s.length;t++){
+            if(s.data[t]==s.data[i]){
+                list_del(s,t,data);
+            }
+        }
+    }
+}
+
 #endif //UNTITLED_SQLIST_H
