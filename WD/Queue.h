@@ -34,5 +34,4 @@ void quick_sort(SqList_static &s,int L,int R){
     }
 }
 
-
 #endif //UNTITLED_QUEUE_H

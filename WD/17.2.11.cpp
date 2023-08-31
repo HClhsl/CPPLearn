@@ -9,6 +9,7 @@ elem_type find_mid(SqList_static s1,SqList_static s2){
 
 }
 
+
 int main(){
     SqList_static s1,s2;
     init_list_random(s1,20);
