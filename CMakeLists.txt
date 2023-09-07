@@ -7,5 +7,5 @@ add_executable(CPPCODE
         WD/SqList.h
         WD/Queue.h
         WD/Search.h
-        WD/38.2.13.cpp
+        WD/38.2.24.cpp
 )

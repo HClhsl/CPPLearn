@@ -17,38 +17,41 @@ void sort(Sqc s){
     }
 }
 
-void list_merge(Sqc a,Sqc b){
-    Sqc t,temp;
-    t=a;
-    temp=a;
+Sqc find_public(Sqc a,Sqc b){
+    Sqc c,temp;
+    c=(Sqc) malloc(sizeof (SqList_chain));
+    c->next= nullptr;
+    temp=c;
     a=a->next;
     b=b->next;
     for(;a!= nullptr&&b!= nullptr;){
-        if(a->data>=b->data){
-            temp->next=b;
+        if(a->data>b->data){
             b=b->next;
-        } else{
-            temp->next=a;
+        }
+        else if(a->data<b->data){
             a=a->next;
         }
-        temp=temp->next;
+        else{
+            temp->next=(Sqc) malloc(sizeof (SqList_chain));
+            temp=temp->next;
+            temp->data=a->data;
+            temp->next= nullptr;
+            a=a->next;
+            b=b->next;
+        }
     }
-    if(a== nullptr){
-        temp->next=b;
-    } else{
-        temp->next=a;
-    }
+    return c;
 }
 
 int main(){
     Sqc a,b;
     init_list_chain_random(a,30);
     sleep(1);
-    init_list_chain_random(b,25);
+    init_list_chain_random(b,35);
     sort(a);
     sort(b);
     list_print_chain(a);
     list_print_chain(b);
-    list_merge(a,b);
-    list_print_chain(a);
+    Sqc c= find_public(a,b);
+    list_print_chain(c);
 }

@@ -17,26 +17,28 @@ void sort(Sqc s){
     }
 }
 
-void list_merge(Sqc a,Sqc b){
-    Sqc t,temp;
-    t=a;
-    temp=a;
+void find_intersection(Sqc a,Sqc b){
+    Sqc x,y;
+    x=a;
     a=a->next;
     b=b->next;
     for(;a!= nullptr&&b!= nullptr;){
-        if(a->data>=b->data){
-            temp->next=b;
-            b=b->next;
-        } else{
-            temp->next=a;
+        if(a->data==b->data){
+            x=x->next;
             a=a->next;
+            b=b->next;
         }
-        temp=temp->next;
+        else if(a->data<b->data){
+            x->next=a->next;
+            free(a);
+            a=x->next;
+        }
+        else{
+            b=b->next;
+        }
     }
-    if(a== nullptr){
-        temp->next=b;
-    } else{
-        temp->next=a;
+    if(b== nullptr){
+        x->next= nullptr;
     }
 }
 
@@ -44,11 +46,11 @@ int main(){
     Sqc a,b;
     init_list_chain_random(a,30);
     sleep(1);
-    init_list_chain_random(b,25);
+    init_list_chain_random(b,35);
     sort(a);
     sort(b);
     list_print_chain(a);
     list_print_chain(b);
-    list_merge(a,b);
+    find_intersection(a,b);
     list_print_chain(a);
 }
