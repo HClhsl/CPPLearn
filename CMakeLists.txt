@@ -5,7 +5,9 @@ set(CMAKE_CXX_STANDARD 17)
 
 add_executable(CPPCODE
         WD/SqList.h
-        WD/Queue.h
+        WD/Sort.h
         WD/Search.h
-        WD/38.2.24.cpp
+        WD/Stack.h
+        WD/Queue.h
+        WD/82.2.4.cpp
 )

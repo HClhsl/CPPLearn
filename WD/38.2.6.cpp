@@ -2,7 +2,7 @@
 // Created by 28580 on 2023/8/31.
 //
 #include "SqList.h"
-#include "Queue.h"
+#include "Sort.h"
 
 void sort(Sqc s){
     Sqc t=s->next;

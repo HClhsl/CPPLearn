@@ -2,7 +2,7 @@
 // Created by 28580 on 2023/8/28.
 //
 #include "SqList.h"
-#include "Queue.h"
+#include "Sort.h"
 
 elem_type find_mid(SqList_static s1,SqList_static s2){
     int mid_a=s1.data[s1.length/2],mid_b=s2.data[s2.length/2];

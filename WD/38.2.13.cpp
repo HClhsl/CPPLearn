@@ -3,7 +3,7 @@
 //
 #include <unistd.h>
 #include "SqList.h"
-#include "Queue.h"
+#include "Sort.h"
 
 void sort(Sqc s){
     Sqc t=s->next;

@@ -2,7 +2,7 @@
 // Created by 28580 on 2023/9/4.
 //
 #include "SqList.h"
-#include "Queue.h"
+#include "Sort.h"
 
 void list_del_repeat(Sqc s){
     Sqc t=s->next;
